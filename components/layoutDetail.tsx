@@ -16,7 +16,7 @@ export default function LayoutDetail({ children }: IProps) {
         <Sidebar />
       </aside>
       <div className="flex flex-col w-[calc(100%-300px)] h-full absolute top-0 left-0">
-        <header className="flex w-full  text-gray-500 h-14 border-b border-gray-100  items-center px-5 gap-8">
+        <header className="flex w-full  text-gray-500 py-5   border-gray-100  items-center px-5 gap-8">
           <IoIosNotifications className="text-2xl" />
           <IoSearchSharp className="text-xl"/>
         </header>
