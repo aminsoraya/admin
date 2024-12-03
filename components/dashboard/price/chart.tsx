@@ -67,7 +67,7 @@ function Chart() {
             <text
               x={x +35}
               y={y+2} // Adjust this value to position the label
-              fill="#000"
+              fill="gray"
               fontSize={11}
               textAnchor="middle"
               className="flex items-center bg-gray-300"

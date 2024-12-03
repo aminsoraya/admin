@@ -1,6 +1,6 @@
 import React from "react";
-import Chart from "@/components/dashboard/price/chart";
-import Header from "@/components/dashboard/price/header";
+import Chart from "@/components/dashboard/service/chart";
+import Header from "@/components/dashboard/service/header";
 
 function Main() {
   return (
