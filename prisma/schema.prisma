@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model orders {
+  id            Int             @id @default(autoincrement())
+  date          DateTime?       @db.Date
+  clock_start   String?         @db.Char(5)
+  clock_end     String?         @db.Char(5)
+  customer_id   Int?
+  date_submit   DateTime?       @default(now()) @db.DateTime(0)
+  stylistId     Int?
+  otp           otp?            @relation(fields: [customer_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "x_customer_id")
+  stylist       stylist?        @relation(fields: [stylistId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "x_stylistId")
+  orders_detail orders_detail[]
+  transactions  transactions[]
+
+  @@index([customer_id], map: "x_customer_id")
+  @@index([date], map: "x_date")
+  @@index([stylistId], map: "x_stylistId")
+}
+
+model orders_detail {
+  id          Int     @id @default(autoincrement())
+  orders_id   Int?
+  services_id Int?
+  orders      orders? @relation(fields: [orders_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "x_order_id")
+
+  @@index([orders_id], map: "x_order_id")
+}
+
+model otp {
+  id       Int      @id @default(autoincrement())
+  guid     String?  @unique(map: "guid") @db.Char(36)
+  code     String?  @db.Char(4)
+  mobile   String?  @unique(map: "mobile") @db.VarChar(11)
+  verified Boolean? @db.Bit(1)
+  orders   orders[]
+}
+
+model services {
+  id            Int       @id @default(autoincrement())
+  name          String?   @db.VarChar(50)
+  duration      String?   @db.Char(5)
+  pre_payment   Boolean?  @default(dbgenerated("b'0'")) @db.Bit(1)
+  price         BigInt?
+  is_delete     Boolean?  @default(dbgenerated("b'0'")) @db.Bit(1)
+  register_date DateTime? @default(now()) @db.DateTime(0)
+  status        Boolean?  @default(dbgenerated("b'1'")) @db.Bit(1)
+  stylistId     Int?
+  discount      Int?      @default(0)
+  stylist       stylist?  @relation(fields: [stylistId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "serviceId")
+
+  @@index([stylistId], map: "serviceId")
+}
+
+model stylist {
+  id            Int        @id @default(autoincrement())
+  name          String?    @db.VarChar(50)
+  phone         String?    @db.Char(11)
+  start_work    String?    @db.Char(5)
+  end_work      String?    @db.Char(5)
+  is_delete     Boolean?   @default(dbgenerated("b'0'")) @db.Bit(1)
+  register_date DateTime?  @default(now()) @db.DateTime(0)
+  status        Boolean?   @default(dbgenerated("b'0'")) @db.Bit(1)
+  start_rest    String?    @default("00:00") @db.Char(5)
+  end_rest      String?    @default("00:00") @db.Char(5)
+  orders        orders[]
+  services      services[]
+}
+
+model transactions {
+  id         Int       @id @default(autoincrement())
+  trackId    BigInt?   @unique(map: "x_trackId")
+  result     Int?
+  amount     Decimal?  @db.Decimal(10, 0)
+  dateSubmit DateTime? @default(now()) @db.DateTime(0)
+  orderId    Int?
+  orders     orders?   @relation(fields: [orderId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "x_orderId")
+
+  @@index([orderId], map: "x_orderId")
+}

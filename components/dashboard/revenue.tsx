@@ -1,13 +1,19 @@
 import React from "react";
 import RevenueCard from "./revenueCard";
+import { RevenueDataType } from "@/types";
 
-export default function Revenue() {
+export default function Revenue({
+  dailyTotal,
+  monthlyTotal,
+  weeklyTotal,
+  yearlyTotal,
+}: RevenueDataType) {
   return (
     <div className="grid grid-cols-4 gap-5">
-      <RevenueCard text="فروش سالانه" money={3_200_000_000} />
-      <RevenueCard text="فروش ماهانه" money={670_000_000}/>
-      <RevenueCard text="فروش هفتگی" money={87_000_000}/>
-      <RevenueCard text="فروش امروز" money={12_000_000}/>
+      <RevenueCard text="فروش سالانه" money={yearlyTotal / 10} />
+      <RevenueCard text="فروش ماهانه" money={monthlyTotal / 10} />
+      <RevenueCard text="فروش هفتگی" money={weeklyTotal / 10} />
+      <RevenueCard text="فروش امروز" money={dailyTotal / 10} />
     </div>
   );
 }
