@@ -8,7 +8,7 @@ import { useEffect, useState, useTransition } from "react";
 import { getDashboradInitialData } from "../api";
 import { RevenueDataType } from "@/types";
 
-export const useRevenueFetcher = () => {
+export const useSale = () => {
   const [, FetchInitialData] = useTransition();
   const { startOfWeek, endOfWeek } = getStartAndEndWeek();
   const { startOfMonth, endOfMonth } = getStartAndEndMonth();
@@ -36,7 +36,7 @@ export const useRevenueFetcher = () => {
         });
       });
     });
-  }, []);
+  }, [startOfWeek,startOfMonth,startOfYear]);
 
   return { data: response };
 };

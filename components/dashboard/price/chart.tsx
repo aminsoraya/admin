@@ -1,17 +1,7 @@
 "use client";
 import { EnNumToPer } from "@/utils/formating";
-import React, { PureComponent } from "react";
-import {
-  BarChart,
-  Bar,
-  Rectangle,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import React from "react";
+import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
 
 const data = [
   {
@@ -65,8 +55,8 @@ function Chart() {
           cursor={"pointer"}
           label={({ x, y, value }: any) => (
             <text
-              x={x +35}
-              y={y+2} // Adjust this value to position the label
+              x={x + 35}
+              y={y + 2} // Adjust this value to position the label
               fill="gray"
               fontSize={11}
               textAnchor="middle"

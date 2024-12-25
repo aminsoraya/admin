@@ -1,22 +1,23 @@
 "use client";
-import PriceProgresChart from "@/components/dashboard/price/main";
+import PriceProgressChart from "@/components/dashboard/price/main";
 import ServiceProgresChart from "@/components/dashboard/service/main";
 import Revenue from "@/components/dashboard/revenue";
 import Customer from "@/components/dashboard/customer/page";
-import LoadingRevenue from "@/components/loading/LoadingRevenue";
-import { useRevenueFetcher } from "@/service/hooks/fetcher";
+import Users from "@/components/dashboard/stylist/page";
+import LoadingSales from "@/components/loading/LoadingSales";
+import { useSale } from "@/service/hooks/fetcher";
 
 export default function Home() {
-  const { data } = useRevenueFetcher();
-  console.log("Data ",data);
+  const { data: saleData } = useSale();
 
   return (
     <div className="flex flex-col">
-      {!data ? <LoadingRevenue /> : <Revenue {...data!} />}
+      {!saleData ? <LoadingSales /> : <Revenue {...saleData!} />}
       <div className="grid grid-cols-2 gap-x-5 gap-y-5 my-5">
-        <PriceProgresChart />
+        <PriceProgressChart />
         <ServiceProgresChart />
         <Customer />
+        <Users />
       </div>
     </div>
   );
