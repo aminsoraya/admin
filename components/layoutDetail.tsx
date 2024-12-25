@@ -12,13 +12,13 @@ interface IProps {
 export default function LayoutDetail({ children }: IProps) {
   return (
     <ThemeProvider>
-      <aside className="bg-gray-50 w-[300px] h-screen fixed">
+      <aside className="bg-gray-50 w-[300px] h-screen z-[50] border-l shadow hidden xl:flex absolute ">
         <Sidebar />
       </aside>
-      <div className="flex flex-col w-[calc(100%-300px)] h-full absolute top-0 left-0">
+      <div className="flex flex-col xl:w-[calc(100%-300px)] w-full h-full absolute top-0 left-0">
         <header className="flex w-full  text-gray-500 py-5   border-gray-100  items-center px-5 gap-8">
           <IoIosNotifications className="text-2xl" />
-          <IoSearchSharp className="text-xl"/>
+          <IoSearchSharp className="text-xl" />
         </header>
         <main className=" h-full px-5 py-5  ">{children}</main>
       </div>

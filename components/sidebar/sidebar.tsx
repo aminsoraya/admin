@@ -8,7 +8,7 @@ import { ImExit } from "react-icons/im";
 
 export default function Sidebar() {
   return (
-    <div className="bg-gray-100 h-full py-10 flex flex-col items-center px-5">
+    <div className="bg-gray-100 h-full py-10 flex flex-col items-center px-5 w-full">
       <Item isActive icon={MdDashboard} link="/" text="داشبورد" />
       <Item icon={FaClipboardList} link="/" text="سفارشات درجریان" />
       <Item icon={FaUser} link="/" text="تنظیمات آرایشگر" />
