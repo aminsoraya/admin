@@ -60,8 +60,8 @@ const renderCustomizedLabel = ({
 };
 function Chart() {
   return (
-    <div className="flex items-center justify-center">
-      <div className="w-4/12 flex flex-col items-center gap-2">
+    <div className="flex items-center justify-center md:flex-row flex-col">
+      <div className="xl:w-4/12 w-full flex flex-col items-center gap-2">
         {COLORS.map((item, index) => {
           return (
             <div
@@ -81,7 +81,7 @@ function Chart() {
           );
         })}
       </div>
-      <div className="w-8/12">
+      <div className="xl:w-8/12 w-full">
         <ResponsiveContainer className="w-full flex" height={300}>
           <PieChart width={500} height={800}>
             <Pie
@@ -103,6 +103,7 @@ function Chart() {
             </Pie>
           </PieChart>
         </ResponsiveContainer>
+ 
       </div>
     </div>
   );

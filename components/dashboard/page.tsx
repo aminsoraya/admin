@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {!saleData ? <LoadingSales /> : <Revenue {...saleData!} />}
-      <div className="grid grid-cols-2 gap-x-5 gap-y-5 my-5">
+      <div className="grid lg:grid-cols-2 gap-x-5 gap-y-5 my-5">
         <PriceProgressChart />
         <ServiceProgresChart />
         <Customer />

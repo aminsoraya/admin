@@ -12,7 +12,7 @@ interface IProps {
 export default function LayoutDetail({ children }: IProps) {
   return (
     <ThemeProvider>
-      <aside className="bg-gray-50 w-[300px] h-screen z-[50] border-l shadow hidden xl:flex absolute ">
+      <aside className="bg-gray-50 w-[300px] h-screen z-[50] border-l shadow hidden xl:flex fixed  ">
         <Sidebar />
       </aside>
       <div className="flex flex-col xl:w-[calc(100%-300px)] w-full h-full absolute top-0 left-0">
