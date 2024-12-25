@@ -4,39 +4,32 @@ import {
   getStartAndEndWeek,
   getStartAndEndYear,
 } from "@/utils";
-import { useEffect, useState, useTransition } from "react";
-import { getDashboradInitialData } from "../api";
+import { useEffect, useState } from "react";
 import { RevenueDataType } from "@/types";
 
-export const useSale = () => {
-  const [, FetchInitialData] = useTransition();
-  const { startOfWeek, endOfWeek } = getStartAndEndWeek();
-  const { startOfMonth, endOfMonth } = getStartAndEndMonth();
-  const { startOfYear, endOfYear } = getStartAndEndYear();
-  const { nowDate } = getNowDate();
-  const [response, setResponse] = useState<RevenueDataType | undefined>();
+
+export const useDashboardData = () => {
+  const [revenue, setRevenue] = useState<
+    RevenueDataType | undefined
+  >();
 
   useEffect(() => {
-    FetchInitialData(async () => {
-      await getDashboradInitialData({
-        nowDate,
-        startOfWeek,
-        endOfWeek,
-        startOfMonth,
-        endOfMonth,
-        startOfYear,
-        endOfYear,
-      }).then((data: any) => {
-        const dataParser = data.at(0);
-        setResponse({
-          dailyTotal: +dataParser.f0,
-          weeklyTotal: +dataParser.f1,
-          monthlyTotal: +dataParser.f2,
-          yearlyTotal: +dataParser.f3,
+    (async () => {
+      let response = await fetch("http://localhost:3000/initialData")
+        .then((data) => data.json())
+        .then((data) => data);
+      if (response?.revenue) {
+        setRevenue({
+          dailyTotal: parseInt(response.revenue.dailyTotal),
+          weeklyTotal: parseInt(response.revenue.weeklyTotal),
+          monthlyTotal: parseInt(response.revenue.monthlyTotal),
+          yearlyTotal: parseInt(response.revenue.yearlyTotal),
         });
-      });
-    });
-  }, [startOfWeek,startOfMonth,startOfYear]);
+      }
+    })();
+  }, []);
 
-  return { data: response };
+  return {
+    revenue
+  };
 };

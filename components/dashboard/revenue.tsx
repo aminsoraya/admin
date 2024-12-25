@@ -8,6 +8,11 @@ export default function Revenue({
   weeklyTotal,
   yearlyTotal,
 }: RevenueDataType) {
+
+  console.log( dailyTotal,
+    monthlyTotal,
+    weeklyTotal,
+    yearlyTotal,)
   return (
     <div className="grid 2xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-5">
       <RevenueCard text="فروش امسال" money={yearlyTotal / 10} />
