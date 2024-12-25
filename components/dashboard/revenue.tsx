@@ -9,7 +9,7 @@ export default function Revenue({
   yearlyTotal,
 }: RevenueDataType) {
   return (
-    <div className="grid grid-cols-4 gap-5">
+    <div className="grid xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-5">
       <RevenueCard text="فروش امسال" money={yearlyTotal / 10} />
       <RevenueCard text="فروش این ماه" money={monthlyTotal / 10} />
       <RevenueCard text="فروش این هفته" money={weeklyTotal / 10} />
