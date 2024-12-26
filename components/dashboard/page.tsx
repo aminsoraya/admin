@@ -9,14 +9,14 @@ import { useEffect } from "react";
 import { useDashboardStore } from "@/state/zustand/useDashboardStore";
 
 export default function Home() {
-  const { sales: salesFetchedData } = useDashboardApi();
-  const { setSales } = useDashboardStore();
+  const { sales: salesData } = useDashboardApi();
+  const { setSales:setSalesData } = useDashboardStore();
 
   useEffect(() => {
-    if (salesFetchedData) {
-      setSales(salesFetchedData);
+    if (salesData) {
+      setSalesData(salesData);
     }
-  }, [salesFetchedData]);
+  }, [salesData]);
 
   return (
     <div className="flex flex-col">
