@@ -1,40 +1,13 @@
 "use client";
+import { RevenueDataType } from "@/types";
 import { EnNumToPer } from "@/utils/formating";
 import React from "react";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
 
-const data = [
-  {
-    title: "شنبه",
-    value: 8000000,
-  },
-  {
-    title: "یک شنبه",
-    value: 6500000,
-  },
-  {
-    title: "دوشنبه",
-    value: 7200000,
-  },
-  {
-    title: "سه شنبه",
-    value: 4900000,
-  },
-  {
-    title: "چهارشنبه",
-    value: 9000000,
-  },
-  {
-    title: "پنج شنبه",
-    value: 12000000,
-  },
-  {
-    title: "جمعه",
-    value: 4000000,
-  },
-];
-
-function Chart() {
+interface IProps{
+  data:RevenueDataType[]
+}
+function Chart({data}:IProps) {
   return (
     <ResponsiveContainer className="w-full " height={300}>
       <BarChart className="w-full h-full" data={data}>

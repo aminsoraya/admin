@@ -1,5 +1,5 @@
 "use client";
-import PriceProgressChart from "@/components/dashboard/price/main";
+import PriceProgressChart from "@/components/dashboard/revenue/main";
 import ServiceProgresChart from "@/components/dashboard/service/main";
 import Sales from "@/components/dashboard/sales/main";
 import Customer from "@/components/dashboard/customer/page";
@@ -9,14 +9,20 @@ import { useEffect } from "react";
 import { useDashboardStore } from "@/state/zustand/useDashboardStore";
 
 export default function Home() {
-  const { sales: salesData } = useDashboardApi();
-  const { setSales:setSalesData } = useDashboardStore();
+  const { sales: salesData, revenue: revenueData } = useDashboardApi();
+  const { setSales: setSalesData, setRevenues: setRevenueData } =
+    useDashboardStore();
+
+    console.log({salesData})
 
   useEffect(() => {
     if (salesData) {
       setSalesData(salesData);
     }
-  }, [salesData]);
+    if (revenueData) {
+      setRevenueData(revenueData);
+    }
+  }, [salesData, revenueData]);
 
   return (
     <div className="flex flex-col">

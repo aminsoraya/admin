@@ -16,6 +16,12 @@ export interface SaleDataType {
   yearlyTotal: number;
 }
 
+export interface RevenueDataType {
+ title:string,
+ value:string
+}
+
+
 export interface Column<T> {
   header: string;
   accessor: keyof T;
