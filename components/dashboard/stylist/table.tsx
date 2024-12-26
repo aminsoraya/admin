@@ -1,9 +1,12 @@
 import DataTable from "@/components/dataTable/dataTable";
-import { useUser } from "@/service/hooks/useUser";
+import { User } from "@/types";
 import { UserColumn } from "@/types/user";
 import React from "react";
 
-export default function Users() {
-  const user = useUser();
-  return <DataTable columns={UserColumn} data={user} />;
+
+interface IProps{
+  data:User[]
+}
+export default function Users({data}:IProps) {
+   return <DataTable columns={UserColumn} data={data} />;
 }

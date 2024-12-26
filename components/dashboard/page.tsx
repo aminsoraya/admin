@@ -10,8 +10,10 @@ import { useDashboardStore } from "@/state/zustand/useDashboardStore";
 
 export default function Home() {
   //get data from api
-  const { salesData, revenueData, serviceData, customerData } =
+  const { salesData, revenueData, serviceData, customerData, userData } =
     useDashboardApi();
+
+    console.log({userData})
 
   //extract function from state manager
   const {
@@ -19,8 +21,8 @@ export default function Home() {
     setRevenues: setRevenueData,
     setService: setServiceData,
     setCustomers: setCustomersData,
+    setUsers: setUsersData,
   } = useDashboardStore();
-
 
   //filling state manager
   useEffect(() => {
@@ -43,7 +45,12 @@ export default function Home() {
     if (customerData) {
       setCustomersData(customerData);
     }
-  }, [salesData, revenueData, serviceData, customerData]);
+
+    //user
+    if (userData) {
+      setUsersData(userData);
+    }
+  }, [salesData, revenueData, serviceData, customerData, userData]);
 
   return (
     <div className="flex flex-col">

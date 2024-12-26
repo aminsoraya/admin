@@ -5,7 +5,13 @@ import {
   getStartAndEndYear,
 } from "@/utils";
 import { useEffect, useState } from "react";
-import { Customer, RevenueDataType, SaleDataType, ServiceDataType } from "@/types";
+import {
+  Customer,
+  RevenueDataType,
+  SaleDataType,
+  ServiceDataType,
+  User,
+} from "@/types";
 
 export const useDashboardApi = () => {
   const [salesData, setSalesData] = useState<SaleDataType | undefined>();
@@ -15,9 +21,8 @@ export const useDashboardApi = () => {
   const [serviceData, setServiceData] = useState<
     ServiceDataType[] | undefined
   >();
-  const [customerData, setCustomerData] = useState<
-    Customer[] | undefined
-  >();
+  const [customerData, setCustomerData] = useState<Customer[] | undefined>();
+  const [userData, setUserData] = useState<User[] | undefined>();
 
   useEffect(() => {
     (async () => {
@@ -49,6 +54,11 @@ export const useDashboardApi = () => {
       if (response?.customer) {
         setCustomerData(response?.customer);
       }
+
+      //user
+      if (response?.user) {
+        setUserData(response?.user);
+      }
     })();
   }, []);
 
@@ -57,5 +67,6 @@ export const useDashboardApi = () => {
     revenueData,
     serviceData,
     customerData,
+    userData,
   };
 };
