@@ -8,8 +8,8 @@ import { useEffect, useState } from "react";
 import { RevenueDataType, SaleDataType } from "@/types";
 
 export const useDashboardApi = () => {
-  const [sales, setSales] = useState<SaleDataType | undefined>();
-  const [revenue, setRevenue] = useState<RevenueDataType[] | undefined>();
+  const [salesData, setSalesData] = useState<SaleDataType | undefined>();
+  const [revenueData, setRevenueData] = useState<RevenueDataType[] | undefined>();
 
   useEffect(() => {
     (async () => {
@@ -18,7 +18,7 @@ export const useDashboardApi = () => {
         .then((data) => data);
 
       if (response?.sales) {
-        setSales({
+        setSalesData({
           dailyTotal: parseInt(response.sales.dailyTotal),
           weeklyTotal: parseInt(response.sales.weeklyTotal),
           monthlyTotal: parseInt(response.sales.monthlyTotal),
@@ -26,13 +26,13 @@ export const useDashboardApi = () => {
         });
       }
       if (response?.revenue) {
-        setRevenue(response?.revenue);
+        setRevenueData(response?.revenue);
       }
     })();
   }, []);
 
   return {
-    sales,
-    revenue,
+    salesData,
+    revenueData,
   };
 };

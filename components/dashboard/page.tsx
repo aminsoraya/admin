@@ -9,11 +9,9 @@ import { useEffect } from "react";
 import { useDashboardStore } from "@/state/zustand/useDashboardStore";
 
 export default function Home() {
-  const { sales: salesData, revenue: revenueData } = useDashboardApi();
+  const { salesData, revenueData } = useDashboardApi();
   const { setSales: setSalesData, setRevenues: setRevenueData } =
     useDashboardStore();
-
-    console.log({salesData})
 
   useEffect(() => {
     if (salesData) {
