@@ -9,7 +9,7 @@ export interface DashboardDataRequest {
   startOfYear: string;
   endOfYear: string;
 }
-export interface RevenueDataType {
+export interface SaleDataType {
   dailyTotal: number;
   weeklyTotal: number;
   monthlyTotal: number;

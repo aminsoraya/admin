@@ -1,18 +1,26 @@
 "use client";
 import PriceProgressChart from "@/components/dashboard/price/main";
 import ServiceProgresChart from "@/components/dashboard/service/main";
-import Revenue from "@/components/dashboard/revenue";
+import Sales from "@/components/dashboard/sales/main";
 import Customer from "@/components/dashboard/customer/page";
 import Users from "@/components/dashboard/stylist/page";
-import LoadingSales from "@/components/loading/LoadingSales";
-import { useDashboardData } from "@/service/hooks/fetcher";
+import { useDashboardApi } from "@/service/hooks/fetcher";
+import { useEffect } from "react";
+import { useDashboardStore } from "@/state/zustand/useDashboardStore";
 
 export default function Home() {
-  const { revenue } = useDashboardData();
+  const { sales: salesFetchedData } = useDashboardApi();
+  const { setSales } = useDashboardStore();
+
+  useEffect(() => {
+    if (salesFetchedData) {
+      setSales(salesFetchedData);
+    }
+  }, [salesFetchedData]);
 
   return (
     <div className="flex flex-col">
-      {!revenue ? <LoadingSales /> : <Revenue {...revenue!} />}
+      <Sales />
       <div className="grid lg:grid-cols-2 gap-x-5 gap-y-5 my-5">
         <PriceProgressChart />
         <ServiceProgresChart />
