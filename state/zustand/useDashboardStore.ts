@@ -1,16 +1,20 @@
 import { create } from "zustand";
-import { RevenueDataType, SaleDataType } from "@/types";
+import { RevenueDataType, SaleDataType, ServiceDataType } from "@/types";
 
 interface DashboardStore {
   sales: SaleDataType | undefined;
-  setSales: (data: SaleDataType) => void;
   revenues: RevenueDataType[] | undefined;
+  service: ServiceDataType[] | undefined;
+  setSales: (data: SaleDataType) => void;
+  setService: (data: ServiceDataType[]) => void;
   setRevenues: (data: RevenueDataType[]) => void;
 }
 
 export const useDashboardStore = create<DashboardStore>((set) => ({
   sales: undefined,
   revenues: undefined,
+  service: undefined,
+  setService: (data) => set({ service: data }),
   setSales: (data) => set({ sales: data }),
   setRevenues: (data) => set({ revenues: data }),
 }));

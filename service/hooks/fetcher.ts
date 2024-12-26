@@ -5,11 +5,16 @@ import {
   getStartAndEndYear,
 } from "@/utils";
 import { useEffect, useState } from "react";
-import { RevenueDataType, SaleDataType } from "@/types";
+import { RevenueDataType, SaleDataType, ServiceDataType } from "@/types";
 
 export const useDashboardApi = () => {
   const [salesData, setSalesData] = useState<SaleDataType | undefined>();
-  const [revenueData, setRevenueData] = useState<RevenueDataType[] | undefined>();
+  const [revenueData, setRevenueData] = useState<
+    RevenueDataType[] | undefined
+  >();
+  const [serviceData, setServiceData] = useState<
+    ServiceDataType[] | undefined
+  >();
 
   useEffect(() => {
     (async () => {
@@ -17,6 +22,7 @@ export const useDashboardApi = () => {
         .then((data) => data.json())
         .then((data) => data);
 
+      //sales
       if (response?.sales) {
         setSalesData({
           dailyTotal: parseInt(response.sales.dailyTotal),
@@ -25,8 +31,15 @@ export const useDashboardApi = () => {
           yearlyTotal: parseInt(response.sales.yearlyTotal),
         });
       }
+
+      //revenue
       if (response?.revenue) {
         setRevenueData(response?.revenue);
+      }
+
+      //service
+      if (response?.service) {
+        setServiceData(response?.service);
       }
     })();
   }, []);
@@ -34,5 +47,6 @@ export const useDashboardApi = () => {
   return {
     salesData,
     revenueData,
+    serviceData,
   };
 };

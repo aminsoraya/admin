@@ -20,7 +20,11 @@ export interface RevenueDataType {
  title:string,
  value:string
 }
-
+export interface ServiceDataType {
+ title:string,
+ value:string,
+ name:string
+}
 
 export interface Column<T> {
   header: string;
