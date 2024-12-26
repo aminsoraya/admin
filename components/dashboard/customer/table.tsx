@@ -1,8 +1,9 @@
 import DataTable from "@/components/dataTable/dataTable";
-import { useCustomer } from "@/service/hooks/useCustomer";
+import { useDashboardStore } from "@/state/zustand/useDashboardStore";
 import { CustomerColumn } from "@/types/customer";
 
-export default function Customer() {
-  const customers = useCustomer();
-  return <DataTable columns={CustomerColumn} data={customers} />;
+ 
+export default function CustomerDataTable() {
+  const { customers } = useDashboardStore();
+  return <DataTable columns={CustomerColumn} data={customers!} />;
 }
