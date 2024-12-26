@@ -17,13 +17,12 @@ export interface SaleDataType {
 }
 
 export interface RevenueDataType {
- title:string,
- value:string
+  title: string;
+  value: string;
 }
 export interface ServiceDataType {
- title:string,
- value:string,
- name:string
+  title: string;
+  value: string;
 }
 
 export interface Column<T> {
@@ -46,3 +45,11 @@ export type Customer = {
 };
 
 export type User = Customer;
+
+export interface InitialData {
+  sales: SaleDataType | undefined;
+  revenue: RevenueDataType[] | undefined;
+  service: ServiceDataType[] | undefined;
+  customer: Customer[] | undefined;
+  user: User[] | undefined;
+}

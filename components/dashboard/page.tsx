@@ -10,47 +10,17 @@ import { useDashboardStore } from "@/state/zustand/useDashboardStore";
 
 export default function Home() {
   //get data from api
-  const { salesData, revenueData, serviceData, customerData, userData } =
-    useDashboardApi();
-
-    console.log({userData})
+  const initialData = useDashboardApi()!;
 
   //extract function from state manager
-  const {
-    setSales: setSalesData,
-    setRevenues: setRevenueData,
-    setService: setServiceData,
-    setCustomers: setCustomersData,
-    setUsers: setUsersData,
-  } = useDashboardStore();
+  const { setInitialData } = useDashboardStore();
 
   //filling state manager
   useEffect(() => {
-    //sales
-    if (salesData) {
-      setSalesData(salesData);
+    if (initialData) {
+      setInitialData(initialData);
     }
-
-    //revenue
-    if (revenueData) {
-      setRevenueData(revenueData);
-    }
-
-    //service
-    if (serviceData) {
-      setServiceData(serviceData);
-    }
-
-    //customer
-    if (customerData) {
-      setCustomersData(customerData);
-    }
-
-    //user
-    if (userData) {
-      setUsersData(userData);
-    }
-  }, [salesData, revenueData, serviceData, customerData, userData]);
+  }, [initialData]);
 
   return (
     <div className="flex flex-col">

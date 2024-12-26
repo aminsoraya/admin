@@ -7,16 +7,16 @@ import Loading from "./loading";
 export default function Customer() {
   const filters = [{ value: 1, text: "هفتگی" }];
 
-  const { users } = useDashboardStore();
+  const { initialData } = useDashboardStore();
 
   const Card: FC = () => {
     return (
       <div className="w-full bg-gray-50 border px-3  rounded-lg flex flex-col">
         <Header options={filters} title="پرتقاضا ترین کارکنان" />
-        <Table data={users!} />
+        <Table data={initialData?.user!} />
       </div>
     );
   };
 
-  return users ? <Card /> : <Loading />;
+  return initialData?.user ? <Card /> : <Loading />;
 }

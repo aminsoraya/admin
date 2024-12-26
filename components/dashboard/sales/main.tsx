@@ -4,10 +4,10 @@ import { useDashboardStore } from "@/state/zustand/useDashboardStore";
 import LoadingSales from "./loading";
 
 export default function Sales() {
-  const { sales: salesData } = useDashboardStore();
+  const { initialData } = useDashboardStore();
 
   const Cards: FC = () => {
-    const { dailyTotal, monthlyTotal, weeklyTotal, yearlyTotal } = salesData!;
+    const { dailyTotal, monthlyTotal, weeklyTotal, yearlyTotal } = initialData?.sales!;
     return (
       <>
         <RevenueCard text="فروش امسال" money={yearlyTotal / 10} />
@@ -19,7 +19,7 @@ export default function Sales() {
   };
   return (
     <div className="grid 2xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-5">
-      {salesData ? <Cards /> : <LoadingSales />}
+      {initialData?.sales! ? <Cards /> : <LoadingSales />}
     </div>
   );
 }

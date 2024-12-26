@@ -17,6 +17,8 @@ export default function BarChartComponent<T extends RevenueDataType>({
   data,
   config,
 }: BarChartDataType<T>) {
+
+ 
   const fontSize = config?.fontSize ?? 12;
   const tickMargin = config?.tickMargin ?? 50;
   const height = config?.height ?? 300;
